@@ -4,6 +4,5 @@ public class Process {
     int arrivalTime;
     int burstTime;
     int priority;
-    int waitingTime;
-    int turnaroundTime;
 }
+
