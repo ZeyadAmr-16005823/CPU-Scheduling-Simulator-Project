@@ -1,5 +1,6 @@
 #include "PrioritySchedulerP.h"
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -34,11 +35,11 @@ PSResult PrioritySchedulerP::simulate() {
     PSResult result;
 
     struct ProcessInfo {
-        //struct simplifies process information
+        // simplifies process information
         string pid;
         int arrival;
         int burst;
-        int remaining; //remaining time of current process
+        int remaining; // remaining time of current process
         int priority;
         int startTime = -1;
         int completionTime = -1;
@@ -49,7 +50,8 @@ PSResult PrioritySchedulerP::simulate() {
     for (int i = 0; i < processes.size(); i++) {
         // copy all process data
         ProcessInfo p;
-        p.pid = processes[i].pid;
+        // Process.pid is an int; store a readable id string
+        p.pid = to_string(processes[i].pid);
         p.arrival = processes[i].arrivalTime;
         p.burst = processes[i].burstTime;
         p.remaining = processes[i].burstTime;
@@ -104,7 +106,7 @@ PSResult PrioritySchedulerP::simulate() {
         timeline.push_back(procs[best].pid);
         procs[best].remaining--;
         time++;
-        busyTime++; //cpu per time unit recorded in Gantt chart
+        busyTime++; // cpu per time unit recorded in Gantt chart
 
         if (procs[best].remaining == 0) {
             procs[best].completionTime = time;
@@ -114,6 +116,7 @@ PSResult PrioritySchedulerP::simulate() {
 
     result.gantt = compressTimeline(timeline);
     result.totalTime = time - procs[0].arrival;
+    // Gantt chart start time is relative to when first process arrives
 
     double totalWait = 0;
     double totalTurnaround = 0;
@@ -140,7 +143,7 @@ PSResult PrioritySchedulerP::simulate() {
         totalResponse += m.response;
     }
 
-    //completed scheduling stats
+    // completed scheduling stats
     result.avgWaiting = totalWait / n;
     result.avgTurnaround = totalTurnaround / n;
     result.avgResponse = totalResponse / n;
@@ -157,7 +160,7 @@ void PrioritySchedulerP::printReport(const PSResult& res) {
     }
     cout << "\n\n";
 
-    cout << left << setw(8) << "PID" //set table headers
+    cout << left << setw(8) << "PID" // set table headers
          << setw(10) << "Arrival"
          << setw(8) << "Burst"
          << setw(10) << "Priority"
