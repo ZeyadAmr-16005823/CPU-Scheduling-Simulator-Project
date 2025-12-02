@@ -6,8 +6,9 @@ class CSVReader
 public:
 
 	//Constructor
-	CSVReader(std::string file_path) {
+	CSVReader(std::string file_path, std::vector<Process>& Processes) {
 
 	}
 };
+
 
