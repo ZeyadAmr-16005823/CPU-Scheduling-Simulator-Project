@@ -1,11 +1,12 @@
 #pragma once
 #include <vector>
+#include <string>
 
 class Process
 {
 public:
 	//Process Data Process
-	int pid;
+	std::string pid;
 	int arrivalTime;
 	int burstTime;
 	int priority;
@@ -16,5 +17,6 @@ public:
     int waitingTime = 0;
     int turnaroundTime = 0;
 };
+
 
 
