@@ -1,7 +1,6 @@
 #pragma once
 #include "Process.h"
-#include <algorithm>
-#include <cmath>
+#include <climits>
 
 class PrioritySchedulerNP
 {
@@ -22,13 +21,13 @@ public:
 		while(completed < amount){
 
 			//Find the first process with the Highest Priority(1 is Highest)
-			int highestPriority = INFINITY;
+			int highestPriority = INT_MAX;
 			int index = -1;
 			int i = 0;
 			for (Process& p: Processes) {
 				//Checking for highest Priority AND if the process
 				//has arrived AND if the process is NOT finished
-				if (p.priority < highestPriority && p.arrivalTime<=cpuTime && finished[i] == false) {
+				if (p.priority <= highestPriority && p.arrivalTime<=cpuTime && finished[i] == false) {
 					highestPriority = p.priority;
 					index = i;
 				}
