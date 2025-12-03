@@ -7,7 +7,7 @@ class FCFS
 public:
 
 	//Constructor
-	FCFS(std::vector<Process>& Processes) {
+	FCFS(std::vector<Process>& Processes, int cpuTime = 0) {
 
 	}
 
