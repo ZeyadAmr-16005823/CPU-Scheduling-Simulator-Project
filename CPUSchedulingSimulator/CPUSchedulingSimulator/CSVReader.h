@@ -1,4 +1,6 @@
 #pragma once
+#include<iostream>
+
 
 #include<string>
 class CSVReader
@@ -10,5 +12,6 @@ public:
 
 	}
 };
+
 
 
