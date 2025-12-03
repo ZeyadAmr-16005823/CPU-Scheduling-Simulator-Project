@@ -7,9 +7,8 @@ class PrioritySchedulerNP
 public:
 
 	//Constructor
-	PrioritySchedulerNP(std::vector<Process>& Processes) {
-
-		int cpuTime = 0;
+	PrioritySchedulerNP(std::vector<Process>& Processes, int cpuTime = 0) {
+		
 		int amount = Processes.size();
 		int completed = 0;
 
@@ -27,7 +26,7 @@ public:
 			for (Process& p: Processes) {
 				//Checking for highest Priority AND if the process
 				//has arrived AND if the process is NOT finished
-				if (p.priority <= highestPriority && p.arrivalTime<=cpuTime && finished[i] == false) {
+				if (p.priority < highestPriority && p.arrivalTime<=cpuTime && finished[i] == false) {
 					highestPriority = p.priority;
 					index = i;
 				}
@@ -58,6 +57,5 @@ public:
 			
 		}
 	}
-
 };
 
