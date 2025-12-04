@@ -9,9 +9,8 @@ using namespace std;
 
 class SJF {
 public:
-    SJF(vector<Process>& processes){
+    SJF(vector<Process>& processes, int currentTime = 0){
 
-        int currentTime = 0; //current time of the simulation
         int CompletedProcesses = 0;  // its acts as a counter for the finished processes
         int n = processes.size();  //number of processes
 
