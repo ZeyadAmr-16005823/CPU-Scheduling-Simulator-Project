@@ -16,7 +16,11 @@ public:
     int finishTime = 0;
     int waitingTime = 0;
     int turnaroundTime = 0;
+	int responseTime = 0;
+	
+	
 };
+
 
 
 
