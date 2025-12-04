@@ -1,7 +1,7 @@
 #pragma once
 #include "Process.h"
 #include "PrioritySchedulerNP.h"
-#include "PrioritySchedulerP.h"
+#include "SJF.h"
 #include <iostream>
 #include <vector>
 
@@ -29,13 +29,12 @@ public:
 
 		int cpuTime = 0;
 
-		//Queue 1(Priority Scheduler Preemptive)
-		std::cout << "Queue 1(Priority Scheduler Preemptive): " << std::endl;
+		//Queue 1(SJF)
+		std::cout << "Queue 1(Shortest Job First(SJF)): " << std::endl;
 		std::cout << "Process ID\t" << "Arrival Time\t" << "Burst Time\t" << "Priority\t" << "Start Time\t" << "Finish Time\t"
 			<< "Waiting Time\t" << "Turnaround Time" << std::endl;
 
-		PrioritySchedulerP PSP(queue1, cpuTime);
-
+		SJF sjf(queue1, cpuTime);
 		for (Process& p : queue1) {
 			std::cout << p.pid << "\t\t" << p.arrivalTime << "\t\t" << p.burstTime << "\t\t" << p.priority << "\t\t"
 				<< p.startTime << "\t\t" << p.finishTime << "\t\t"
@@ -44,6 +43,8 @@ public:
 
 		//set the cpuTime to the Maximum Finish Time
 		cpuTime = getMaxFinishTime(queue1);
+
+		std::cout <<"-------------------------------------------------------------------------------------------------------------------" << std::endl;//LINE SPACE
 
 		//Queue 2(Priority Scheduler Non Preemptive)
 		std::cout << "Queue 2(Priority Scheduler Non Preemptive): " << std::endl;
@@ -61,17 +62,22 @@ public:
 		cpuTime = getMaxFinishTime(queue2);
 
 
+		std::cout << "-------------------------------------------------------------------------------------------------------------------" << std::endl;//LINE SPACE
+
 		//Queue 3(FCFS)
-		std::cout << "Queue 2(FCFS): " << std::endl;
+		std::cout << "Queue 3(FCFS): " << std::endl;
 		std::cout << "Process ID\t" << "Arrival Time\t" << "Burst Time\t" << "Priority\t" << "Start Time\t" << "Finish Time\t"
 			<< "Waiting Time\t" << "Turnaround Time" << std::endl;
 
 		FCFS fcfs(queue3, cpuTime);
+
 		for (Process& p : queue3) {
 			std::cout << p.pid << "\t\t" << p.arrivalTime << "\t\t" << p.burstTime << "\t\t" << p.priority << "\t\t"
 				<< p.startTime << "\t\t" << p.finishTime << "\t\t"
 				<< p.waitingTime << "\t\t" << p.turnaroundTime << std::endl;
 		}
+
+		std::cout << "-------------------------------------------------------------------------------------------------------------------" << std::endl;//LINE SPACE
 
 	}
 
